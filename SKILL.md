@@ -1,58 +1,60 @@
 ---
 name: vintage-folk-woodcut
-description: Make 4:5 travel posters with an unchanged photograph above and an airy minimal folk woodcut below, limited to eight colors including paper and postmark.
+description: Transform uploaded photos into 4:5 travel posters with an unmodified top photograph and a clean, limited-color folk woodcut below. Use staged shape simplification, restrained carved-paper dashes and exact compositing.
 ---
 
-# Vintage Folk Woodcut v1.2 | 清新极简复古木刻
+# Vintage Folk Woodcut v1.3 — 结构优先、纹理可复现
 
-## Non-negotiable source fidelity
-- The uploaded target photograph is the ONLY source of scene objects, silhouettes and arrangement. Style reference images inform aesthetics ONLY. Never draw objects from reference images into the source scene.
-- Keep recognizable primary subject(s), pose, size relationships, and distinctive architecture. Delete secondary clutter; do not add scenery, buildings, mountains, lakes, pagodas, suns, props or figures absent from the source.
-- Upper photograph remains the actual input photo, not an AI recreation. Only necessary proportional cropping to the upper panel is allowed. For pixel-level fidelity, composite the original pixels after generating the bottom illustration.
+## Golden rule / 核心审美
+**主角轮廓清楚 > 内部大面积留白 > 统一重复的短刻痕 > 次要细节。**
+不要给照片叠加木刻滤镜。把照片翻译成少数完整的大色块，再在必要的色块内部“挖去”短小形状露出纸色。参照城市江景、湖边沙发、树与大象三类示例：统一节奏、平面剪影、少色、纸白呼吸感。其他参考图片只能决定风格，不能取代用户上传的目标图。
 
-## Geometry | fixed 4:5 50/50 layout
-Reference grid: 1200 × 1500 px, scale proportionally.
-- Top photo = x 0..1200, y 0..750 (exactly 50% height); no recoloring, re-rendering or texture.
-- Lower ivory paper = x 0..1200, y 750..1500 (exactly 50%).
-- Bottom printed illustration is a single clean-edged rectangle x 132..1068 (78% canvas width), y 810..1280 (470 px), with perfectly clear horizontal/vertical edges; image content clipped to all four sides. Side margins precisely 11% of whole width each; top paper margin 60 px.
-- Center a restrained monochrome postmark at x 600, y approximately 1305..1410, 150–200 px wide, no overlap with illustration and at least 90 px paper under the stamp. Stamp only gives verified Chinese/English location; otherwise generic place mark or request location. Do not guess.
-- No extra outline, headline, second panel, collage, watermark or typography other than necessary in-scene lettering and stamp.
+## 绝对约束
+- 成品竖版4:5，参考尺寸1200×1500；照片位于上半部y=0–750，木刻纸面位于下半部y=750–1500，各50%。
+- 上半**真实原始照片像素**，不得让生成模型重绘。只能为填满1200×750进行主体安全的等比裁切。需要严格原图保留时，最后以图像合成贴入原始像素。
+- 下半暖米白哑光纸，建议固定纸色 #F3E6C9（除非用户明确另定）；不要每次偏黄偏橙。
+- 下半独立完整横向矩形印画：x=132–1068（宽度78%，左右留白各11%），y=810–1280（高470px）。四条边明确完整，所有场景内容严格在矩形内，不许越界、渐隐或与邮戳重叠。
+- 邮戳位于矩形下方，中央x≈600，y=1305–1410；上下不重叠，底部至少90px留白。只写已知准确中英文地名，未知地点须询问或用无地名通用邮戳，不能猜。
+- 下半纸色、刻线颜色、插画色块和邮戳颜色**合计最多8色，推荐4–6色**。同一色的透明度/渐变不能伪造新色。邮戳复用调色板颜色。
+- 不能凭空加入原图未出现的湖泊、塔、远山、太阳、人物、建筑或摆设。对主体数量、关系、姿态和关键特征保持准确。
+- 禁止一点/两点/三点透视；用平立面、有限轴侧表达以及遮挡与上下排列传达层次。
 
-## Core art direction | LESS before texture
-**Order of artistic priorities for lower half: shape simplification > inner-picture negative space > carved-mark rhythm > minor subject detail.** Top fidelity and fixed layout always precede these.
-1. Before rendering any lines, rewrite the scene as approximately **4–7 coherent large silhouettes/color regions**, plus a few essential small motifs. These are guidelines, not a rigid cap if subject legibility needs more. Group trees, tea leaves, windows, people, rocks and skyline fragments into larger masses, not thousands of outlined objects.
-2. Preserve only the subject's identifying silhouette and a few compositional anchors. Remove tiny lines, window patterns, loose foliage, tiny clutter. Silhouette recognition at thumbnail scale is a success criterion.
-3. Prefer just **foreground / middle ground / background** layers through overlap, relative size, vertical placement and color. Flat elevation/front/side views or very restrained axonometric geometry only. No one-, two- or three-point perspective, photoreal shadows or depth of field.
-4. Ensure **quiet paper-white regions INSIDE the printed rectangle** (sky, highlights, shape separations) as well as blank cream margins OUTSIDE it. A large sky can remain near-blank. Do not fill every colored area with patterns or turn the entire sky into thick horizontal bars.
-5. Patterns are **carved-out negative-space marks inside large flat color masses**, never extra outlines around every leaf. For tea fields, group hundreds of leaves into 2–5 large green masses with short seed-shaped cuts; preserve workers as simple shapes. For architecture, render main mass and iconic roof/tower silhouette, simplify nearly all windows.
+## 推荐三阶段流程（优先于单步生成）
+### A. Scene inventory / 抽取语义
+列出：1–3个关键主体、1–3组背景轮廓、地面/水面/天空区域、可删除的次要信息、地点置信度。标出不能删除的识别特征。不得引入参考图的物体。
 
-## Palette | eight total colors MAX for lower half
-- Preferred **4–6 colors** including paper, ink and postmark; **8 is a ceiling, not a target**. The upper real photograph does not count.
-- Palette starts from ivory paper, warm charcoal/deep evergreen, one lighter field color, one muted cool or warm supporting color, one accent, and optional single ink for stamp; the stamp MUST reuse a palette color.
-- Example six colors: ivory #F3E6C9, deep pine #304C42, charcoal #2B3330, olive #9DAB6C, muted ochre #CBA257, brick #CB6550. Adjust colors based on the actual scene BEFORE rendering, never add accidental shades/transparent gradients.
-- Prefer large solid areas and striking negative-space contrast rather than color diversity. No photographic lighting, gradients, smooth digital shading or fine color dithering.
+### B. Flat-shape artwork / 无纹理母版
+只让AI绘制无纹理、硬边界、平涂色块；原则上4–7个大轮廓组（不是4–7个独立对象的硬限制）。树冠/茶丛合并为连续团块；远景建筑群转化成剪影，少量关键楼顶轮廓；人物/动物为完整色块而非碎小线条；天空使用大面积纸白。拒绝细密窗格、单独叶片勾边、摄影残留和额外景观。若母版不干净，先重做B，绝不靠加纹理遮盖。
 
-## Engraving language | simple, readable, restrained
-- Every object class can use a distinctive direction, **but only one dominant motif per large region**. Prioritize repetition and rhythm, not texture coverage.
-- Water: compact orderly horizontal dashes, consistent spacing, enough untouched flat color.
-- Foliage and tree canopies: short leaf-shaped dashes **carved out of one solid group**; do not draw leaf contours.
-- Buildings: solid silhouettes; a few purposeful upright slits or interrupted horizontal cuts, never miniature grids of windows.
-- Stone, ground: sparse vertical stout gouges; fur and textiles: a limited set of curved/diagonal cuts following form.
-- Sky: often plain ivory/one flat color, perhaps a few short horizontal cuts ONLY if needed; sky is vital breathing space.
-- Coarse marks must read at thumbnail size but stay proportionate. Former 'mandatory 7–18 px long, 2–5 px thick everywhere' is **not a global quota**; scale by subject. Fewer marks is often better than larger/more marks.
-- Slightly uneven hand-cut edges and ink dropout within printed regions, subtle paper tooth. Never add random noise/grunge overlays, micro-hatching, botanical contour outlines, dense decor or full-field texture.
+### C. Carved dash design / 露纸短刻痕
+将母版大色块按语义区域分组（植被、水、建筑、地面、衣服/动物、天空）。每组只用一种主要短刻痕，采用**色块内部纸色镂空**，不能统一叠加噪点。
+- 水：水平方向错位排列的短粗条，保留大块水面底色。
+- 树冠、草、茶田：整体绿色色块里“挖”米粒状、短叶状、短斜刻痕；**绝不逐片画叶子轮廓**。
+- 建筑：大剪影，只在重点处用少量短竖凿痕，不重画每扇窗。
+- 石地：短竖线或局部短斜痕；衣服、毛发沿形体有限短弧痕。
+- 天空：以完整纸白或单块平色为主，至多几段稀疏刻痕；**禁止大面积横线铺满天空**。
+- 同一区域保留无纹理的实色岛/纸白空隙，不要求每个地方有纹理。刻线可清晰、略不规则，但整体对齐、尺寸接近、节奏统一。
+- 相比前版本，“7–18px刻痕尺寸”仅作比例起点，不能作为全画面固定密度配额。缩略观看应先见完整轮廓，然后才读到纹理。
+- 纸张极轻微纤维质地可以保留，但微小随机颗粒、照相噪点、全画面做旧划痕**不能代替**短刻痕。
 
-## Postmark
-Small centered vintage monocolor postal seal on lower paper BELOW the artwork, accurate known place in English/Chinese. Restrained circle/oval and 3–4 cancellation waves; may include tiny relevant silhouette. Stamp does not invade illustration.
+### D. Composition / 固定合成
+严格裁剪木刻到矩形，在纯纸张下半层绘制邮戳；用原照直接合成上半。检查输出色板与纸张一致。若工具支持蒙版或矢量/分层输出，输出“主体大色块蒙版+各材质蒙版”以供确定性纹理填充；如不支持，不虚称已经程序级稳定控制。
 
-## Quality gate before delivering
-- Is source photo actually unchanged, not recreated?
-- Is poster 4:5, exactly equal halves, printed rectangle exactly 78% wide with 11% margins?
-- Is the scene faithful, without invented mountains, lakes, towers or sunsets?
-- At thumbnail scale, do strong simple silhouettes dominate before engraved texture?
-- Are there distinct calm blank areas, especially in sky, rather than full-frame linework?
-- Does each color region have at most one rhythmic carve motif, and are leaves/windows not individually outlined?
-- Are there only 4–6 preferred or at most 8 flat lower-half colors including postmark and paper?
-- Is the legible, accurate postmark BELOW the rectangle and centered?
+## 跨平台推荐用法
+1. AI工具允许多张参考：照片作为content/source，三张木刻例图仅style/reference；分别声明角色。
+2. 如果允许多轮：先运行 PROMPTS_STAGED_CN.md 的A（形体平面化），选择合格无纹理母版；再B（局部挖纸短刻痕）；最后C（排版）。
+3. 只有单轮时使用 PROMPT_CN.md 的完整提示词，同时上传原照和风格参照；接受不同模型无法保证像素级一致的限制。
+4. 对确切原图像素、精确边距、色数和真实纹理复用，推荐外部程序/蒙版/矢量工作流，不可仅靠生成模型口头承诺。
 
-If no: regenerate ONLY the illustrated lower half. Do not change original top photo or reduce outer margins.
+## 输出验收和纠偏顺序
+1. 上半是否来自原始照片，而不是相似重画？
+2. 4:5 / 50:50 / 78%矩形 / 两侧11% / 邮戳位置是否准确？
+3. 下半是否无凭空景物，关键主体的轮廓和相对位置正确？
+4. 缩略图第一眼是否看到简洁完整的大色块（而不是细节）？
+5. 树叶是否被合并成整片色块？建筑是否不再逐窗描绘？
+6. 天空及部分大色块是否有**真正的无纹理留白**？
+7. 刻线是否为纸色负形、一个区域一种有秩序的主纹样？
+8. 下半是否仅4–6色为佳、绝不超过8色，并锁定纸色？
+9. 邮戳是否真实地点、单色、居中、与矩形有距离？
+
+若不通过，依次改：**删除细节 → 合并色块 → 清空天空 → 降低刻痕覆盖率 → 调整刻痕排列**。不要通过增加纹理、颜色或场景物体解决问题。
