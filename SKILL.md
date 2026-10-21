@@ -67,3 +67,21 @@ If any requirement conflicts, simplify architecture and foliage further; do NOT 
 4. Render illustration solely within target rectangle; render stamp separately below.
 5. Generate lower half, then (where pixel exactness matters) crop source photo to top aspect and assemble with lower half using deterministic image compositing. Never let a model redraw the top photo.
 6. Check bounds, palette and stamp position. Regenerate lower artwork if checks fail; retain unchanged top.
+
+
+## Mandatory coarse short-dash engraving | 粗短刻线最高优先级 (v1.1)
+The defining visual characteristic is deliberately carved, **bold, short horizontal dashes**, not aged photographic grain. Give this rule priority over scene detail and decorative distress, but do not break the source-photo, 8-color or layout constraints.
+
+- Use substantial, high-contrast horizontal cuts, with short diagonal/curved cuts only where anatomy or foliage needs them. Cuts are carved-out paper-colored negative spaces or deliberately printed single-palette-color strokes, not added colors.
+- On the 1200×1500 design grid, typical prominent carved marks in the illustration should be approximately **7–18 px long and 2–5 px thick**, spaced roughly **4–12 px apart**, with controlled hand-cut irregularity. These are starting proportions, not universal rigid marks. At thumbnail scale they must remain distinct.
+- Prioritize clearly repeated **short dashes** in water and sky; clustered seed-/leaf-like short gouges in vegetation; intermittent short notches in architecture; directional short arcs in fur and clothing. Never render a mass of tiny precise windows or pores.
+- Keep substantial solid areas and exposed paper between cuts; vary rhythm by material, not with global random noise. Under no circumstances substitute dust, fine speckle, uniform grain overlays or micro-hatching for carved marks.
+- If subject legibility and bold cuts compete, remove minor architecture/people/leaf details instead of making the cuts tiny. Entire depicted scene must remain clipped to the rectangular print and within the **eight total lower-half colors**.
+
+### Texture acceptance tests
+1. At a reduced preview, do individual short gouges remain visible?
+2. Are most texture marks bold dashes instead of dots, blur or noise?
+3. Are the sky, ground, water, buildings, animals and foliage patterned according to their material, not with the same overlay?
+4. Are compositions intentionally simplified, without gratuitous windows or background props?
+5. Are the flat ink count (≤8), hard rectangular print bounds, top original-photo fidelity and centered stamp unchanged?
+If not, re-render **only the lower artwork**, enlarging marks and removing small details.
