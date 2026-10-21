@@ -1,87 +1,58 @@
 ---
 name: vintage-folk-woodcut
-description: Transform a source photograph into a 4:5, 50/50 original-photo plus eight-color vintage folk woodcut travel poster with fixed rectangular margins and location postmark.
+description: Make 4:5 travel posters with an unchanged photograph above and an airy minimal folk woodcut below, limited to eight colors including paper and postmark.
 ---
 
-# Vintage Folk Woodcut | 复古民间木刻旅行海报
+# Vintage Folk Woodcut v1.2 | 清新极简复古木刻
 
-## Input and hierarchy
-- User-supplied PHOTO is the only source of scene content. Other images are style references, NEVER substitute them as scene input.
-- Identify principal subject, secondary structures, actions, object count, geographic relationship, and distinctive shapes. Preserve recognition while simplifying details.
-- Use the accurate user-provided location for the stamp. If unknown, omit the specific place name or ask; do not fabricate it.
+## Non-negotiable source fidelity
+- The uploaded target photograph is the ONLY source of scene objects, silhouettes and arrangement. Style reference images inform aesthetics ONLY. Never draw objects from reference images into the source scene.
+- Keep recognizable primary subject(s), pose, size relationships, and distinctive architecture. Delete secondary clutter; do not add scenery, buildings, mountains, lakes, pagodas, suns, props or figures absent from the source.
+- Upper photograph remains the actual input photo, not an AI recreation. Only necessary proportional cropping to the upper panel is allowed. For pixel-level fidelity, composite the original pixels after generating the bottom illustration.
 
-## Absolutely fixed composition
-- Vertical 4:5 output, reference grid **1200×1500**.
-- Top panel: `x=0..1200, y=0..750` exactly 50%. The actual source photo must remain photorealistic and unmodified. Crop/scale-to-cover is permitted ONLY to fit 1200×750, with subject-safe cropping; do not regenerate it, recolor it, add a texture, or change existing text. For pixel-accurate preservation, composite the original photo programmatically as a last step.
-- Lower panel: `x=0..1200, y=750..1500`, warm matte paper background.
-- Printed illustration is **one perfectly bounded rectangular print** at `x=132..1068` (78% canvas width), `y=810..1280` (470 px / 62.7% of lower panel height). Left and right paper margins exactly 132 px; top lower-panel paper margin 60 px. The rectangle must be complete and visually straight on all four sides, no feathering, broken edges bleeding past boundary, gradients, false frame, or decorative outline. Entire scene including ground, mountains, buildings, trees and figures stays inside it.
-- Stamp below rectangle, centered around x=600, within `y=1305..1410`, approximately 150–200 px wide. Keep a 25 px or larger gap from artwork. Reserve at least 90 px bottom margin. Do not overlap art or drift to a corner.
-- On resize maintain ALL proportions. The lower half paper background and woodcut are distinct regions.
+## Geometry | fixed 4:5 50/50 layout
+Reference grid: 1200 × 1500 px, scale proportionally.
+- Top photo = x 0..1200, y 0..750 (exactly 50% height); no recoloring, re-rendering or texture.
+- Lower ivory paper = x 0..1200, y 750..1500 (exactly 50%).
+- Bottom printed illustration is a single clean-edged rectangle x 132..1068 (78% canvas width), y 810..1280 (470 px), with perfectly clear horizontal/vertical edges; image content clipped to all four sides. Side margins precisely 11% of whole width each; top paper margin 60 px.
+- Center a restrained monochrome postmark at x 600, y approximately 1305..1410, 150–200 px wide, no overlap with illustration and at least 90 px paper under the stamp. Stamp only gives verified Chinese/English location; otherwise generic place mark or request location. Do not guess.
+- No extra outline, headline, second panel, collage, watermark or typography other than necessary in-scene lettering and stamp.
 
-## Style: not a filter
-Woodblock/linocut naïve folk-art print, flat elevation or restrained isometric geometry only. NO one-, two-, three-point converging perspective, vanishing points, photoreal lighting, cast shadow, beveling, glossy effects, gradients, watercolors or vector-smooth flat fills.
+## Core art direction | LESS before texture
+**Order of artistic priorities for lower half: shape simplification > inner-picture negative space > carved-mark rhythm > minor subject detail.** Top fidelity and fixed layout always precede these.
+1. Before rendering any lines, rewrite the scene as approximately **4–7 coherent large silhouettes/color regions**, plus a few essential small motifs. These are guidelines, not a rigid cap if subject legibility needs more. Group trees, tea leaves, windows, people, rocks and skyline fragments into larger masses, not thousands of outlined objects.
+2. Preserve only the subject's identifying silhouette and a few compositional anchors. Remove tiny lines, window patterns, loose foliage, tiny clutter. Silhouette recognition at thumbnail scale is a success criterion.
+3. Prefer just **foreground / middle ground / background** layers through overlap, relative size, vertical placement and color. Flat elevation/front/side views or very restrained axonometric geometry only. No one-, two- or three-point perspective, photoreal shadows or depth of field.
+4. Ensure **quiet paper-white regions INSIDE the printed rectangle** (sky, highlights, shape separations) as well as blank cream margins OUTSIDE it. A large sky can remain near-blank. Do not fill every colored area with patterns or turn the entire sky into thick horizontal bars.
+5. Patterns are **carved-out negative-space marks inside large flat color masses**, never extra outlines around every leaf. For tea fields, group hundreds of leaves into 2–5 large green masses with short seed-shaped cuts; preserve workers as simple shapes. For architecture, render main mass and iconic roof/tower silhouette, simplify nearly all windows.
 
-Compose from large opaque silhouettes, using overlap and vertical placement for depth. Remove distractions and minor details. Avoid introducing extra scenery (sun, buildings, people, hills, boats, etc.) absent from source. Figures are solid and proportionate, minimal/no facial features. Text from the photo need only be kept if visually important and legible.
+## Palette | eight total colors MAX for lower half
+- Preferred **4–6 colors** including paper, ink and postmark; **8 is a ceiling, not a target**. The upper real photograph does not count.
+- Palette starts from ivory paper, warm charcoal/deep evergreen, one lighter field color, one muted cool or warm supporting color, one accent, and optional single ink for stamp; the stamp MUST reuse a palette color.
+- Example six colors: ivory #F3E6C9, deep pine #304C42, charcoal #2B3330, olive #9DAB6C, muted ochre #CBA257, brick #CB6550. Adjust colors based on the actual scene BEFORE rendering, never add accidental shades/transparent gradients.
+- Prefer large solid areas and striking negative-space contrast rather than color diversity. No photographic lighting, gradients, smooth digital shading or fine color dithering.
 
-## Exactly eight printing colors maximum (INCLUDING paper and postmark)
-Example single shared eight-ink palette (adapt by mapping the scene's key hues rather than adding tones):
-1. warm ivory paper `#F3E3BF`
-2. charcoal black `#242B29`
-3. deep pine green `#31574E`
-4. muted sage `#829470`
-5. ochre yellow `#D0A24C`
-6. vermilion/coral accent `#CF533D`
-7. dusty blue/teal `#567F8A`
-8. earthy brown `#9B7258`
-
-These are eight DISTINCT flat colors, not eight base colors plus shades. Paper and postmark count; use one of these colors for the stamp. For pictures dominated by other hues, make a different eight-color palette chosen ONCE before rendering. Never use gradients/transparency/lighting variants to sneak in more hues. Reserve the most saturated ink for a single prominent focal object. Image's photographic TOP is exempt from this eight-color restriction.
-
-## Woodcut marks are structure, not grain overlay
-Every major surface gets its OWN bold visible carved pattern, with deliberate uneven spacing and occasional blank paper gaps:
-- City buildings: medium/coarse vertical rectangular slits or interrupted grids, not thousands of tiny windows.
-- Water: clearly visible repeated horizontal cuts with rhythmic, varying lengths, not photographic shimmer.
-- Sky: mostly open blank paper or sparse robust horizontal irregular strokes; avoid all-over texture in sky.
-- Trees/foliage: compact repetitive leaf/seed shapes; group foliage into simplified dark masses.
-- Ground/stone: stout dashes, grooves, and irregular punctuation marks.
-- Animal fur: coarse curved dashes respecting anatomy; fabric: thicker directional hatch marks.
-- Distress: subtle ink dropout, registration imperfections, hand-inked dry-brush interruptions *inside print only*. Texture must be discernible at poster thumbnail scale. Prefer fewer, thicker cuts over many tiny lines. Avoid universal random speckle/noise as primary effect.
+## Engraving language | simple, readable, restrained
+- Every object class can use a distinctive direction, **but only one dominant motif per large region**. Prioritize repetition and rhythm, not texture coverage.
+- Water: compact orderly horizontal dashes, consistent spacing, enough untouched flat color.
+- Foliage and tree canopies: short leaf-shaped dashes **carved out of one solid group**; do not draw leaf contours.
+- Buildings: solid silhouettes; a few purposeful upright slits or interrupted horizontal cuts, never miniature grids of windows.
+- Stone, ground: sparse vertical stout gouges; fur and textiles: a limited set of curved/diagonal cuts following form.
+- Sky: often plain ivory/one flat color, perhaps a few short horizontal cuts ONLY if needed; sky is vital breathing space.
+- Coarse marks must read at thumbnail size but stay proportionate. Former 'mandatory 7–18 px long, 2–5 px thick everywhere' is **not a global quota**; scale by subject. Fewer marks is often better than larger/more marks.
+- Slightly uneven hand-cut edges and ink dropout within printed regions, subtle paper tooth. Never add random noise/grunge overlays, micro-hatching, botanical contour outlines, dense decor or full-field texture.
 
 ## Postmark
-Under the rectangle only, small restrained mono-color weathered ink seal. Use location in appropriate English + Chinese if verified, one tiny relevant local silhouette, and three/four cancellation waves. Stamp is a separate printed design on the cream paper, neither part of the rectangle nor an overlay on the scene. Do not add headings, captions, tourist slogans, flags, or watermark.
+Small centered vintage monocolor postal seal on lower paper BELOW the artwork, accurate known place in English/Chinese. Restrained circle/oval and 3–4 cancellation waves; may include tiny relevant silhouette. Stamp does not invade illustration.
 
-## Priority order and validation
-1. Photo source unchanged above and original scene only.
-2. 4:5 and 50/50 split.
-3. Exact rectangle geometry, adequate margin, separate centered stamp.
-4. No more than eight flat colors *in entire lower half including paper/stamp*.
-5. Strong, medium/coarse carved patterns, NOT micro-noise or filter.
-6. Flat composition; no convergent perspective.
-7. Recognizability and scene-specific object arrangements without over-detailed tracing.
+## Quality gate before delivering
+- Is source photo actually unchanged, not recreated?
+- Is poster 4:5, exactly equal halves, printed rectangle exactly 78% wide with 11% margins?
+- Is the scene faithful, without invented mountains, lakes, towers or sunsets?
+- At thumbnail scale, do strong simple silhouettes dominate before engraved texture?
+- Are there distinct calm blank areas, especially in sky, rather than full-frame linework?
+- Does each color region have at most one rhythmic carve motif, and are leaves/windows not individually outlined?
+- Are there only 4–6 preferred or at most 8 flat lower-half colors including postmark and paper?
+- Is the legible, accurate postmark BELOW the rectangle and centered?
 
-If any requirement conflicts, simplify architecture and foliage further; do NOT narrow margins, overfill the scene, or add colors.
-
-## Suggested creation workflow
-1. Inspect provided source photograph. Make a short scene inventory, identify accent color and confirm location if known.
-2. Map photo into just eight print colors; draw simplified landmark/figure silhouettes.
-3. Allocate patterned cuts by material and scale up marks until visible from afar.
-4. Render illustration solely within target rectangle; render stamp separately below.
-5. Generate lower half, then (where pixel exactness matters) crop source photo to top aspect and assemble with lower half using deterministic image compositing. Never let a model redraw the top photo.
-6. Check bounds, palette and stamp position. Regenerate lower artwork if checks fail; retain unchanged top.
-
-
-## Mandatory coarse short-dash engraving | 粗短刻线最高优先级 (v1.1)
-The defining visual characteristic is deliberately carved, **bold, short horizontal dashes**, not aged photographic grain. Give this rule priority over scene detail and decorative distress, but do not break the source-photo, 8-color or layout constraints.
-
-- Use substantial, high-contrast horizontal cuts, with short diagonal/curved cuts only where anatomy or foliage needs them. Cuts are carved-out paper-colored negative spaces or deliberately printed single-palette-color strokes, not added colors.
-- On the 1200×1500 design grid, typical prominent carved marks in the illustration should be approximately **7–18 px long and 2–5 px thick**, spaced roughly **4–12 px apart**, with controlled hand-cut irregularity. These are starting proportions, not universal rigid marks. At thumbnail scale they must remain distinct.
-- Prioritize clearly repeated **short dashes** in water and sky; clustered seed-/leaf-like short gouges in vegetation; intermittent short notches in architecture; directional short arcs in fur and clothing. Never render a mass of tiny precise windows or pores.
-- Keep substantial solid areas and exposed paper between cuts; vary rhythm by material, not with global random noise. Under no circumstances substitute dust, fine speckle, uniform grain overlays or micro-hatching for carved marks.
-- If subject legibility and bold cuts compete, remove minor architecture/people/leaf details instead of making the cuts tiny. Entire depicted scene must remain clipped to the rectangular print and within the **eight total lower-half colors**.
-
-### Texture acceptance tests
-1. At a reduced preview, do individual short gouges remain visible?
-2. Are most texture marks bold dashes instead of dots, blur or noise?
-3. Are the sky, ground, water, buildings, animals and foliage patterned according to their material, not with the same overlay?
-4. Are compositions intentionally simplified, without gratuitous windows or background props?
-5. Are the flat ink count (≤8), hard rectangular print bounds, top original-photo fidelity and centered stamp unchanged?
-If not, re-render **only the lower artwork**, enlarging marks and removing small details.
+If no: regenerate ONLY the illustrated lower half. Do not change original top photo or reduce outer margins.
